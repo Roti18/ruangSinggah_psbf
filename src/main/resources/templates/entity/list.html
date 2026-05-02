@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head('Data - Ruang Singgah')}"></head>
+<body class="bg-[#FAFAFA] text-[#1F2937] font-sans">
+<div class="flex min-h-screen">
+  <div th:replace="~{components/sidebar :: sidebar}"></div>
+  <div class="ml-64 flex-1 flex flex-col">
+    <div th:replace="~{components/topbar :: topbar}"></div>
+    <main class="flex-1 p-8">
+      <div id="page-data" data-page="list" th:data-entity="${entity}" class="hidden"></div>
+
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 id="page-title" class="text-2xl font-bold">Data</h1>
+          <p id="data-count" class="text-sm text-gray-400 mt-0.5"></p>
+        </div>
+        <a id="add-btn" href="#"
+           class="flex items-center gap-2 px-5 py-2.5 bg-[#B7E4C7] text-[#1F2937] text-sm font-semibold rounded-xl hover:bg-[#a0d4b0] transition shadow-sm">
+          <i data-lucide="plus" class="w-4 h-4"></i>Tambah
+        </a>
+      </div>
+
+      <div id="loader" class="hidden flex justify-center py-12"><div class="spinner"></div></div>
+
+      <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="data-table w-full">
+            <thead id="table-head" class="bg-gray-50/80"></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script th:src="@{/js/config.js}"></script>
+<script th:src="@{/js/core.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/entity-list.js}"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

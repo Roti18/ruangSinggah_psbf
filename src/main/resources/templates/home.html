@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout/base :: head('Login - Ruang Singgah')}"></head>
+
+  <body
+    class="bg-[#FAFAFA] font-sans min-h-screen flex items-center justify-center"
+  >
+    <div class="w-full max-w-md px-4">
+      <div class="text-center mb-8 flex flex-col items-center">
+        <img src="/ruangsinggahLogo.png" alt="Logo" class="h-20 w-auto mb-2" />
+        <h1 class="text-2xl font-bold text-[#1F2937] tracking-tight">
+          Ruang Singgah
+        </h1>
+        <p
+          class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1"
+        >
+          Management System
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-[#CED4DA] p-8">
+        <div th:if="${currentUser == null}">
+          <h2 class="text-lg font-semibold text-[#1F2937] mb-1">
+            Masuk ke Akun
+          </h2>
+          <p class="text-sm text-gray-400 mb-6">
+            Silakan login untuk melanjutkan
+          </p>
+
+          <a
+            href="/oauth2/authorization/google"
+            class="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#FFFFFF] text-[#1F2937] font-semibold rounded-xl border border-[#CED4DA] hover:bg-[#F5F5F5] transition shadow-sm"
+          >
+            <img
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+              class="h-4 w-4"
+            />
+            Masuk dengan Google
+          </a>
+          <p class="text-xs text-gray-400 mt-4 text-center">
+            Anda akan diarahkan ke Google untuk otorisasi.
+          </p>
+        </div>
+
+        <div th:if="${currentUser != null}" class="text-center">
+          <h2 class="text-lg font-semibold text-[#1F2937] mb-1">
+            Login Berhasil
+          </h2>
+          <p class="text-sm text-gray-400 mb-4">
+            Anda sudah login sebagai
+            <span
+              class="font-semibold text-[#1F2937]"
+              th:text="${currentUser.fullName != null ? currentUser.fullName : currentUser.email}"
+              >User</span
+            >
+          </p>
+          <form action="/logout" method="post" class="flex justify-center">
+            <input
+              type="hidden"
+              th:name="${_csrf.parameterName}"
+              th:value="${_csrf.token}"
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 bg-[#ABD8FF] text-[#1F2937] font-semibold rounded-xl hover:bg-[#93c8ff] transition"
+            >
+              Logout
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-gray-300 mt-6">
+        v1.0 &middot; Ruang Singgah &copy; 2025
+      </p>
+    </div>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

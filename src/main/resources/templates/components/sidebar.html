@@ -1,0 +1,212 @@
+<nav
+  th:fragment="sidebar"
+  class="sidebar fixed top-0 left-0 h-screen w-64 bg-white border-r border-[#CED4DA] flex flex-col z-50"
+>
+  <div
+    class="h-16 flex items-center px-5 border-b border-[#CED4DA] shrink-0 gap-3"
+  >
+    <img src="/ruangsinggahLogo.png" alt="Logo" class="h-12 w-auto" />
+    <h1 class="text-[#1F2937] font-bold text-base leading-none tracking-tight">
+      Ruang Singgah
+    </h1>
+  </div>
+  <div class="flex-1 overflow-y-auto py-3 px-3">
+    <a
+      href="/"
+      class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+    >
+      <i
+        data-lucide="layout-dashboard"
+        class="w-[18px] h-[18px] text-gray-400"
+      ></i
+      >Dashboard</a
+    >
+
+    <!-- ADMIN ONLY: Properti -->
+    <div th:if="${session.role == 'ADMIN'}">
+      <p
+        class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+      >
+        Properti
+      </p>
+      <a
+        href="/boarding-houses"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="building-2" class="w-[18px] h-[18px] text-gray-400"></i
+        >Boarding Houses</a
+      >
+      <a
+        href="/room-types"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="layers" class="w-[18px] h-[18px] text-gray-400"></i>Room
+        Types</a
+      >
+      <a
+        href="/facilities"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="settings" class="w-[18px] h-[18px] text-gray-400"></i
+        >Facilities</a
+      >
+    </div>
+
+    <!-- SHARED: Rooms -->
+    <p
+      class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+    >
+      Akses Cepat
+    </p>
+    <a
+      href="/rooms"
+      class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+    >
+      <i data-lucide="door-open" class="w-[18px] h-[18px] text-gray-400"></i
+      >Rooms</a
+    >
+
+    <!-- ADMIN/STAFF: Penyewa & Keuangan -->
+    <div th:if="${session.role == 'ADMIN' or session.role == 'STAFF'}">
+      <p
+        class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+      >
+        Penyewa
+      </p>
+      <a
+        href="/tenants"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="users" class="w-[18px] h-[18px] text-gray-400"></i
+        >Tenants</a
+      >
+      <a
+        href="/rentals"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="file-text" class="w-[18px] h-[18px] text-gray-400"></i
+        >Rentals</a
+      >
+
+      <p
+        class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+      >
+        Keuangan
+      </p>
+      <a
+        href="/payments"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="credit-card" class="w-[18px] h-[18px] text-gray-400"></i
+        >Payments</a
+      >
+      <a
+        href="/invoices"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="receipt" class="w-[18px] h-[18px] text-gray-400"></i
+        >Invoices</a
+      >
+      <a
+        href="/expenses"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="wallet" class="w-[18px] h-[18px] text-gray-400"></i
+        >Expenses</a
+      >
+    </div>
+
+    <!-- SHARED: Operasional -->
+    <p
+      class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+    >
+      Operasional
+    </p>
+    <a
+      href="/complaints"
+      class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+    >
+      <i
+        data-lucide="alert-triangle"
+        class="w-[18px] h-[18px] text-gray-400"
+      ></i
+      >Complaints</a
+    >
+
+    <div th:if="${session.role == 'ADMIN' or session.role == 'STAFF'}">
+      <a
+        href="/maintenance-requests"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="wrench" class="w-[18px] h-[18px] text-gray-400"></i
+        >Maintenance</a
+      >
+      <a
+        href="/inventory-items"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="package" class="w-[18px] h-[18px] text-gray-400"></i
+        >Inventory</a
+      >
+    </div>
+
+    <div th:if="${session.role == 'ADMIN'}">
+      <a
+        href="/vouchers"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="ticket" class="w-[18px] h-[18px] text-gray-400"></i
+        >Vouchers</a
+      >
+      <a
+        href="/reviews"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="star" class="w-[18px] h-[18px] text-gray-400"></i
+        >Reviews</a
+      >
+    </div>
+
+    <!-- ADMIN ONLY: Sistem -->
+    <div th:if="${session.role == 'ADMIN'}">
+      <p
+        class="pt-5 pb-1 px-3 text-[10px] font-bold text-gray-300 uppercase tracking-widest"
+      >
+        Sistem
+      </p>
+      <a
+        href="/users"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="user" class="w-[18px] h-[18px] text-gray-400"></i
+        >Users</a
+      >
+      <a
+        href="/roles"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="shield" class="w-[18px] h-[18px] text-gray-400"></i
+        >Roles</a
+      >
+      <a
+        href="/activity-logs"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="clock" class="w-[18px] h-[18px] text-gray-400"></i
+        >Activity Logs</a
+      >
+      <a
+        href="/notifications"
+        class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-[#1F2937] hover:bg-[#B7E4C7]/15 rounded-lg transition"
+      >
+        <i data-lucide="bell" class="w-[18px] h-[18px] text-gray-400"></i
+        >Notifications</a
+      >
+    </div>
+  </div>
+  <div class="px-5 py-3 border-t border-[#CED4DA] shrink-0">
+    <p class="text-[10px] text-gray-300">
+      v1.0 &middot; <span th:text="${session.role}">ROLE</span>
+    </p>
+  </div>
+</nav>

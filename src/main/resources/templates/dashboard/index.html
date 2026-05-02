@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head('Dashboard - Ruang Singgah')}"></head>
+<body class="bg-[#FAFAFA] text-[#1F2937] font-sans">
+<div class="flex min-h-screen">
+  <div th:replace="~{components/sidebar :: sidebar}"></div>
+  <div class="ml-64 flex-1 flex flex-col">
+    <div th:replace="~{components/topbar :: topbar}"></div>
+    <main class="flex-1 p-8">
+      <div id="page-data" data-page="dashboard" class="hidden"></div>
+
+      <div class="mb-8">
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <p class="text-sm text-gray-400 mt-1">Ringkasan data sistem Ruang Singgah</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-[#B7E4C7]"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Total Kamar</p>
+              <p id="stat-rooms" class="text-3xl font-bold mt-1">...</p>
+              <a href="/rooms" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-[#B7E4C7]/20 flex items-center justify-center">
+              <i data-lucide="door-open" class="w-5 h-5 text-emerald-600"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-[#ABD8FF]"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Total Penyewa</p>
+              <p id="stat-tenants" class="text-3xl font-bold mt-1">...</p>
+              <a href="/tenants" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-[#ABD8FF]/20 flex items-center justify-center">
+              <i data-lucide="users" class="w-5 h-5 text-blue-500"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-[#B7E4C7]"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Sewa Aktif</p>
+              <p id="stat-rentals" class="text-3xl font-bold mt-1">...</p>
+              <a href="/rentals" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-[#B7E4C7]/20 flex items-center justify-center">
+              <i data-lucide="file-text" class="w-5 h-5 text-emerald-600"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-[#ABD8FF]"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Pembayaran</p>
+              <p id="stat-payments" class="text-3xl font-bold mt-1">...</p>
+              <a href="/payments" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-[#ABD8FF]/20 flex items-center justify-center">
+              <i data-lucide="credit-card" class="w-5 h-5 text-blue-500"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-[#B7E4C7]"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Gedung Kos</p>
+              <p id="stat-bh" class="text-3xl font-bold mt-1">...</p>
+              <a href="/boarding-houses" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-[#B7E4C7]/20 flex items-center justify-center">
+              <i data-lucide="building-2" class="w-5 h-5 text-emerald-600"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm overflow-hidden">
+          <div class="h-1 bg-amber-300"></div>
+          <div class="p-5 flex items-center justify-between">
+            <div><p class="text-xs text-gray-400 uppercase tracking-wider">Komplain</p>
+              <p id="stat-complaints" class="text-3xl font-bold mt-1">...</p>
+              <a href="/complaints" class="text-xs text-[#ABD8FF] hover:underline mt-2 inline-block">Lihat semua &rarr;</a></div>
+            <div class="w-11 h-11 rounded-xl bg-amber-50 flex items-center justify-center">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-500"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm p-6">
+          <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Aktivitas Terbaru</h2>
+          <div id="recent-activity" class="space-y-3">
+            <p class="text-sm text-gray-300">Memuat data...</p>
+          </div>
+        </div>
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm p-6">
+          <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Aksi Cepat</h2>
+          <div class="grid grid-cols-2 gap-3">
+            <a href="/rooms/create" class="flex items-center gap-2 px-4 py-3 bg-[#B7E4C7]/20 text-sm font-medium rounded-xl hover:bg-[#B7E4C7]/40 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i>Kamar Baru</a>
+            <a href="/tenants/create" class="flex items-center gap-2 px-4 py-3 bg-[#ABD8FF]/20 text-sm font-medium rounded-xl hover:bg-[#ABD8FF]/40 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i>Penyewa Baru</a>
+            <a href="/rentals/create" class="flex items-center gap-2 px-4 py-3 bg-[#B7E4C7]/20 text-sm font-medium rounded-xl hover:bg-[#B7E4C7]/40 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i>Sewa Baru</a>
+            <a href="/payments/create" class="flex items-center gap-2 px-4 py-3 bg-[#ABD8FF]/20 text-sm font-medium rounded-xl hover:bg-[#ABD8FF]/40 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i>Pembayaran</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script th:src="@{/js/config.js}"></script>
+<script th:src="@{/js/core.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/dashboard.js}"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<header
+  th:fragment="topbar"
+  class="sticky top-0 z-40 h-16 bg-white/90 backdrop-blur-sm border-b border-[#CED4DA] flex items-center justify-between px-8 shrink-0"
+>
+  <div class="flex items-center gap-3">
+    <span
+      class="text-sm font-bold text-[#1F2937]"
+      th:text="${entity != null ? entity.replace('-', ' ').toUpperCase() : 'DASHBOARD'}"
+    >
+      DASHBOARD
+    </span>
+    <span
+      th:if="${mode != null}"
+      class="px-2 py-0.5 rounded-md bg-[#B7E4C7]/20 text-[#1F2937] text-[10px] font-bold uppercase tracking-wider"
+    >
+      [[${mode}]]
+    </span>
+  </div>
+
+  <div class="flex items-center gap-6">
+    <div class="flex items-center gap-4">
+      <div class="flex flex-col items-end">
+        <span
+          class="text-sm font-bold text-[#1F2937]"
+          th:text="${session.user != null ? session.user.username : 'Guest'}"
+          >User</span
+        >
+        <span
+          class="text-[10px] font-medium text-gray-400 uppercase tracking-widest"
+          th:text="${session.role}"
+          >ROLE</span
+        >
+      </div>
+
+      <div
+        class="w-10 h-10 rounded-xl bg-[#B7E4C7] flex items-center justify-center border-2 border-white shadow-sm ring-1 ring-[#CED4DA]/20"
+      >
+        <i data-lucide="user" class="w-5 h-5 text-[#1F2937]"></i>
+      </div>
+
+      <form action="/logout" method="post" class="p-2" title="Logout">
+        <input
+          type="hidden"
+          th:name="${_csrf.parameterName}"
+          th:value="${_csrf.token}"
+        />
+        <button
+          type="submit"
+          class="text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all p-2"
+        >
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head('Form - Ruang Singgah')}"></head>
+<body class="bg-[#FAFAFA] text-[#1F2937] font-sans">
+<div class="flex min-h-screen">
+  <div th:replace="~{components/sidebar :: sidebar}"></div>
+  <div class="ml-64 flex-1 flex flex-col">
+    <div th:replace="~{components/topbar :: topbar}"></div>
+    <main class="flex-1 p-8">
+      <div id="page-data" data-page="form"
+           th:data-entity="${entity}" th:data-mode="${mode}" th:data-id="${entityId}"
+           class="hidden"></div>
+
+      <div class="flex items-center gap-4 mb-6">
+        <a id="back-btn" href="#"
+           class="flex items-center gap-1.5 px-4 py-2 bg-white border border-[#CED4DA] text-sm rounded-xl hover:bg-gray-50 transition shadow-sm">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>Kembali
+        </a>
+        <h1 id="page-title" class="text-2xl font-bold">Form</h1>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-[#CED4DA] shadow-sm p-8 w-full">
+        <form id="entity-form">
+          <div id="form-fields"></div>
+          <div class="flex gap-3 mt-8 pt-6 border-t border-[#CED4DA]">
+            <button id="submit-btn" type="submit"
+                    class="flex items-center gap-2 px-6 py-2.5 bg-[#B7E4C7] text-[#1F2937] text-sm font-semibold rounded-xl hover:bg-[#a0d4b0] transition shadow-sm">
+              <i data-lucide="check" class="w-4 h-4"></i>Simpan
+            </button>
+            <a id="cancel-btn" th:href="@{'/' + ${entity}}"
+               class="flex items-center gap-2 px-6 py-2.5 bg-white border border-[#CED4DA] text-sm rounded-xl hover:bg-gray-50 transition">
+              Batal
+            </a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</div>
+<script th:src="@{/js/config.js}"></script>
+<script th:src="@{/js/core.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/entity-form.js}"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
